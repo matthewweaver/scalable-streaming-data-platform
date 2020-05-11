@@ -1,0 +1,6 @@
+kafka-python
+python-twitter
+tweepy
+apache-flink
+
+#TODO: Dockerise Kafka
