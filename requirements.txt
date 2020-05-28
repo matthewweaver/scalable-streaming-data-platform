@@ -1,6 +1,6 @@
 kafka-python
 python-twitter
 tweepy
-apache-flink
-
-#TODO: Dockerise Kafka
+vaderSentiment
+pyspark==2.4.3
+Flask
