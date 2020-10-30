@@ -2,6 +2,7 @@
 
 A Data Engineering project to practice using streaming technologies and scaling up to cloud.
 
+### Aims
 * Use readily available real-time data streams
     * Tweets
     * Air quality
@@ -10,17 +11,15 @@ A Data Engineering project to practice using streaming technologies and scaling 
 * Ingest into Kafka as a message bus
 * Perform real-time processing using Flink
 * Provide a scalable platform to enable analysis, prediction
+* Be technology agnostic, allowing different languages/technologies to be integrated through a decoupled pub/sub architecture
 
-Example use cases include:
+### Example use cases:
 * Perform sentiment analysis with Vader
 * Visualise data in real time on a map
 * Aggregate sentiments relating to keywords and look at trends with their local environment
 * Links to COVID
     * Track lockdown through traffic, how weather effects adherence to lockdown
     * Track air quality due to lockdown (more historical)
-    
-
-
 
 ### MVP:
 1. Get Kafka running locally with a service to stream tweets into a topic
