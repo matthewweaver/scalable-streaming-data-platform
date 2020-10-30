@@ -4,3 +4,4 @@
 # IDE settings
 .idea
 .DS_Store
+.venv

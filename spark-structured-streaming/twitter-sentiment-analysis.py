@@ -35,7 +35,7 @@ if __name__ == "__main__":
     df_raw = spark \
         .readStream \
         .format('kafka') \
-        .option('kafka.bootstrap.servers', ' localhost:9092') \
+        .option('kafka.bootstrap.servers', f"{os.environ['DOCKER_MACHINE_IP']}:9092") \
         .option("startingOffsets", "earliest") \
         .option('subscribe', 'covid') \
         .load()

@@ -4,7 +4,7 @@ from tweepy import Stream
 from kafka import KafkaProducer
 from json import dumps
 import configparser
-from confluent_kafka import Producer
+import os
 
 config = configparser.ConfigParser()
 config.read('../../twitter.ini')
@@ -25,8 +25,7 @@ class StdOutListener(StreamListener):
         print(status)
 
 if __name__ == "__main__":
-    # kafka = KafkaClient("localhost:9092")
-    producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+    producer = KafkaProducer(bootstrap_servers=[f"{os.environ['DOCKER_MACHINE_IP']}:9092"],
                              value_serializer=lambda x: dumps(x).encode('utf-8'))
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
