@@ -1,5 +1,6 @@
-import java.util.Properties
+package main.scala
 
+import java.util.Properties
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.runtime.state.filesystem.FsStateBackend
 import org.apache.flink.streaming.api.CheckpointingMode
@@ -7,7 +8,7 @@ import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer}
 
 /**
-  * Implements the "WordCount" program that computes a simple word occurrence histogram over streaming data from Kafka.
+  * Implements the "main.scala.WordCount" program that computes a simple word occurrence histogram over streaming data from Kafka.
   *
   * The input are words from Kafka.
   *
@@ -16,8 +17,7 @@ import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKaf
   *  - use tuple data types,
   *  - write and use transformation functions.
   */
-object WordCount {
-  def main(args: Array[String]) {
+object WordCount extends App {
     // set up the execution environment
     val env = StreamExecutionEnvironment
       .getExecutionEnvironment
@@ -43,14 +43,14 @@ object WordCount {
 
     // prepare Kafka properties
     val kafkaProperties = new Properties
-    kafkaProperties.setProperty("zookeeper.connect", "localhost:2181")
+    kafkaProperties.setProperty("zookeeper.connect", s"${sys.env("DOCKER_MACHINE_IP")}:2181")
     kafkaProperties.setProperty("group.id", "flink")
-    kafkaProperties.setProperty("bootstrap.servers", "localhost:9092")
+    kafkaProperties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")
 
     // set up Kafka Consumer
-    val kafkaConsumer = new FlinkKafkaConsumer[String]("input", new SimpleStringSchema, kafkaProperties)
+    val kafkaConsumer = new FlinkKafkaConsumer[String]("covid", new SimpleStringSchema, kafkaProperties)
 
-    println("Executing WordCount example.")
+    println("Executing main.scala.WordCount example.")
 
     // get text from Kafka
     val text = env.addSource(kafkaConsumer)
@@ -74,6 +74,5 @@ object WordCount {
       kafkaProperties))
 
     // execute program
-    env.execute("Streaming WordCount")
-  }
+    env.execute("Streaming main.scala.WordCount")
 }

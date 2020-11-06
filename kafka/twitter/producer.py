@@ -7,7 +7,7 @@ import configparser
 import os
 
 config = configparser.ConfigParser()
-config.read('../../twitter.ini')
+config.read('twitter.ini')
 access_token = config['DEFAULT']['access_token']
 access_token_secret = config['DEFAULT']['access_token_secret']
 consumer_key = config['DEFAULT']['consumer_key']

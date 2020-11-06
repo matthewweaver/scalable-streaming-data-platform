@@ -5,3 +5,6 @@
 .idea
 .DS_Store
 .venv
+*.iml
+.compiler
+target
