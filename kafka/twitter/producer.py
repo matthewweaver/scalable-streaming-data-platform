@@ -25,8 +25,13 @@ class StdOutListener(StreamListener):
         print(status)
 
 if __name__ == "__main__":
-    producer = KafkaProducer(bootstrap_servers=[f"{os.environ['DOCKER_MACHINE_IP']}:9092"],
+    # producer = KafkaProducer(bootstrap_servers=[f"{os.environ['DOCKER_MACHINE_IP']}:9092"],
+    #                          value_serializer=lambda x: dumps(x).encode('utf-8'))
+    producer = KafkaProducer(bootstrap_servers=["192.168.99.102:9092"],
                              value_serializer=lambda x: dumps(x).encode('utf-8'))
+
+
+
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
