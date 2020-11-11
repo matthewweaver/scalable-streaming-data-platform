@@ -26,8 +26,12 @@ A Data Engineering project to practice using streaming technologies and scaling 
 2. Get Flink running locally with a transformation to calculate sentiment in real time
 
 ### How to run locally on Mac:
-1. With Docker Toolbox installed, create a docker machine locally by running `./create-docker-machine.sh`
+1. With Docker Toolbox installed, create a docker machine locally by running <br>`./create-docker-machine.sh`
 
-2. Start your docker machine and spin up Kafka and Zookeeper `./start-docker-machine.sh`
+2. Start your docker machine and spin up Kafka and Zookeeper <br>`./start-docker-machine.sh`
 
-3. Can run producers and consumers locally to communicate with the docker machine via DOCKER_MACHINE_IP, which must be exported in your environment `export DOCKER_MACHINE_IP=$(docker-machine ip development)`
+3. Can run producers and consumers locally to communicate with the docker machine via DOCKER_MACHINE_IP, which must be exported in your environment <br>`export DOCKER_MACHINE_IP=$(docker-machine ip development)`
+
+4. Build scala applications using Maven with <br>`mvn clean package`
+
+5. Run flink jars using <br>`flink run -m ${DOCKER_MACHINE_IP}:8081 target/scalable-streaming-data-platform-1.0-SNAPSHOT-jar-with-dependencies.jar`

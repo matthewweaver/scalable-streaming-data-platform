@@ -22,7 +22,7 @@ object KafkaConsumer extends App {
     properties.setProperty("bootstrap.servers", "192.168.99.102:9092")
     properties.setProperty("group.id", "flink")
     val env = StreamExecutionEnvironment.getExecutionEnvironment()
-    val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStringSchema, properties))
+    val stream = env.addSource(new FlinkKafkaConsumer[String]("covid", new SimpleStringSchema, properties))
 
 //    val counts: DataStream[(String, Int)] = stream
 //      // split up the lines in pairs (2-tuples) containing: (word,1)
@@ -42,7 +42,7 @@ object KafkaConsumer extends App {
         properties))
 
     // execute program
-    env.execute("Streaming WordCount")
+    env.execute("Kafka Consumer")
 
 
 }
