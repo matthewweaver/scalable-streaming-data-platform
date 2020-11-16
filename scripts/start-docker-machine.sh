@@ -6,5 +6,5 @@ eval $(docker-machine env development)
 # Export your docker-machine IP for use in the Kafka advertised listener
 export DOCKER_MACHINE_IP=$(docker-machine ip development)
 
-# Spin up Kafka and Zookeeper running in your docker machine
+# Spin up Kafka, Zookeeper, Flink running in your docker machine
 docker-compose up

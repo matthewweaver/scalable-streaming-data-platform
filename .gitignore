@@ -1,5 +1,6 @@
 # Twitter API config
 *.ini
+*.properties
 
 # IDE settings
 .idea
