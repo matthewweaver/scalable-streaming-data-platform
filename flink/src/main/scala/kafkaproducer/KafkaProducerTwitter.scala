@@ -1,24 +1,20 @@
-import java.util.{Properties, StringTokenizer}
+package kafkaproducer
 
-import com.twitter.hbc.core.endpoint.{Location, StatusesFilterEndpoint, StreamingEndpoint}
-import org.apache.flink.api.common.functions.FlatMapFunction
+import java.util.Properties
+
+import com.twitter.hbc.core.endpoint.{StatusesFilterEndpoint, StreamingEndpoint}
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.api.java.utils.ParameterTool
-import org.apache.flink.api.scala._
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
-import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
+import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment, createTypeInformation}
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer
 import org.apache.flink.streaming.connectors.twitter.TwitterSource
-import org.apache.flink.util.Collector
 
 import scala.collection.JavaConverters.seqAsJavaListConverter
-import scala.collection.mutable.ListBuffer
-import scala.io.Source
 
 object KafkaProducerTwitter extends App {
 
   // Getting twitter credentials
-  val params = ParameterTool.fromPropertiesFile("twitter.properties")
+  val params = ParameterTool.fromPropertiesFile("../twitter.properties")
 
   val properties = new Properties()
   //    properties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")
@@ -34,7 +30,7 @@ object KafkaProducerTwitter extends App {
 
   env.setParallelism(params.getInt("parallelism", 1))
 
-//  val chicago = new Location(new Location.Coordinate(-86.0, 41.0), new Location.Coordinate(-87.0, 42.0))
+  //  val chicago = new Location(new Location.Coordinate(-86.0, 41.0), new Location.Coordinate(-87.0, 42.0))
 
   //////////////////////////////////////////////////////
   // Create an Endpoint to Track our terms
@@ -42,6 +38,8 @@ object KafkaProducerTwitter extends App {
     @Override
     def createEndpoint(): StreamingEndpoint = {
       val endpoint = new StatusesFilterEndpoint()
+      endpoint.stallWarnings(false)
+      endpoint.delimited(false)
       //endpoint.locations(List(chicago).asJava)
       endpoint.trackTerms(List("covid").asJava)
       endpoint
@@ -62,4 +60,3 @@ object KafkaProducerTwitter extends App {
   // execute program
   env.execute("Twitter Producer")
 }
-

@@ -50,11 +50,55 @@
             <artifactId>commons-logging</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>ai.h2o</groupId>
+            <artifactId>h2o-genmodel</artifactId>
+            <version>3.32.0.1</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.liftweb</groupId>-->
+<!--            <artifactId>lift-json_2.12</artifactId>-->
+<!--            <version>3.4.2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.eclipse.tycho</groupId>-->
+<!--            <artifactId>tycho-compiler-jdt</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.typesafe.play</groupId>-->
+<!--            <artifactId>play-json_2.12</artifactId>-->
+<!--            <version>2.9.1</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.module</groupId>-->
+<!--            <artifactId>jackson-module-scala_2.13</artifactId>-->
+<!--            <version>2.12.0</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
-        <sourceDirectory></sourceDirectory>
+        <sourceDirectory>flink/src/main/scala</sourceDirectory>
         <plugins>
+
+            <plugin>
+                <!-- Use compiler plugin with tycho as the adapter to the JDT compiler. -->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerId>jdt</compilerId>
+                </configuration>
+                <dependencies>
+                    <!-- This dependency provides the implementation of compiler "jdt": -->
+                    <dependency>
+                        <groupId>org.eclipse.tycho</groupId>
+                        <artifactId>tycho-compiler-jdt</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
@@ -77,29 +121,6 @@
                 </executions>
             </plugin>
 
-<!--            <plugin>-->
-<!--                <artifactId>maven-assembly-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>single</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--                <configuration>-->
-<!--                    <archive>-->
-<!--                        <manifest>-->
-<!--                            <addClasspath>true</addClasspath>-->
-<!--                            <mainClass>KafkaProducerTwitter</mainClass>-->
-<!--                        </manifest>-->
-<!--                    </archive>-->
-<!--                    <descriptorRefs>-->
-<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                    </descriptorRefs>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -112,15 +133,17 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>KafkaProducerTwitter</mainClass>
+                                    <mainClass>kafkaproducer.KafkaProducerTwitter</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
-                                <descriptorRef>with-dependencies</descriptorRef>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
+                            <appendAssemblyId>false</appendAssemblyId>
                             <finalName>kafka-producer-twitter</finalName>
                         </configuration>
                     </execution>
+
                     <execution>
                         <id>sentiment-analysis</id>
                         <phase>package</phase>
@@ -130,14 +153,28 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>SentimentAnalysis</mainClass>
+                                    <mainClass>sentimentanalysis.SentimentAnalysis</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
-                                <descriptorRef>with-dependencies</descriptorRef>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
+                            <appendAssemblyId>false</appendAssemblyId>
                             <finalName>sentiment-analysis</finalName>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <!-- put the default-jar in the none phase to skip it from being created -->
+                        <phase>none</phase>
                     </execution>
                 </executions>
             </plugin>
