@@ -13,12 +13,13 @@ import scala.collection.JavaConverters.seqAsJavaListConverter
 
 object KafkaProducerTwitter extends App {
 
+  val parameter = ParameterTool.fromArgs(args)
+
   // Getting twitter credentials
   val params = ParameterTool.fromPropertiesFile("../twitter.properties")
 
   val properties = new Properties()
-  //    properties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")
-  properties.setProperty("bootstrap.servers", "192.168.99.102:9092")
+  properties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")
   properties.setProperty("group.id", "flink-producer")
   properties.setProperty("client.id", "flink-producer-twitter")
 
@@ -34,28 +35,29 @@ object KafkaProducerTwitter extends App {
 
   //////////////////////////////////////////////////////
   // Create an Endpoint to Track our terms
-  class myFilterEndpoint extends TwitterSource.EndpointInitializer with Serializable {
+  class myFilterEndpoint(parameter: ParameterTool) extends TwitterSource.EndpointInitializer with Serializable {
     @Override
     def createEndpoint(): StreamingEndpoint = {
       val endpoint = new StatusesFilterEndpoint()
       endpoint.stallWarnings(false)
       endpoint.delimited(false)
       //endpoint.locations(List(chicago).asJava)
-      endpoint.trackTerms(List("covid").asJava)
+      endpoint.trackTerms(parameter.get("searchTerms", "banana,orange").split(",").toList.asJava)
+      // TODO: Doesn't seem to work
+      endpoint.addPostParameter("lang","en")
       endpoint
     }
   }
 
   val source = new TwitterSource(params.getProperties)
-  val epInit = new myFilterEndpoint()
+  val epInit = new myFilterEndpoint(parameter)
 
   source.setCustomEndpointInitializer(epInit)
 
   // get input data
   val streamSource: DataStream[String] = env.addSource(source)
 
-  // TODO: Parameterise search term
-  streamSource.addSink(new FlinkKafkaProducer[String]("covid", new SimpleStringSchema, properties))
+  streamSource.addSink(new FlinkKafkaProducer[String]("tweets", new SimpleStringSchema, properties))
 
   // execute program
   env.execute("Twitter Producer")

@@ -77,6 +77,12 @@
             <version>3.2.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest-wordspec_${scala.binary.version}</artifactId>
+            <version>3.2.2</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
