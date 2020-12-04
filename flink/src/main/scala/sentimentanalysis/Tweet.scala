@@ -31,26 +31,23 @@ object Tweet {
 //      val key = obj.get("key").asText().split(" ").toSet
       val key = Set("key")
 //      val value = obj.get("value")
-//      var text = ""
-      var text = obj.get("text").asText ()
-//      if (value.get("truncated").asBoolean()){
-//        text = value.get("extended_tweet").get("full_text").asText ()
-//      }
-//      else{
-//        text = value.get("text").asText ()
-//      }
-//      val time = dateFormat.parse (value.get ("created_at").asText ())
-      val time = dateFormat.parse ("Thu Nov 26 16:05:10 +0000 2020")
+      var text = ""
+//      var text = obj.get("text").asText ()
+      if (obj.get("truncated").asBoolean()){
+        text = obj.get("extended_tweet").get("full_text").asText ()
+      }
+      else{
+        text = obj.get("text").asText ()
+      }
+      val time = dateFormat.parse (obj.get ("created_at").asText ())
+//      val time = dateFormat.parse ("Thu Nov 26 16:05:10 +0000 2020")
       val hashtags: Set[String] = hashtagPattern.findAllIn (text).toSet
-//      val words = Tokenizer().transform(text)
-      val words = Seq("words")
-//      val geo = value.get("user").get("location").asText ()
-      val geo = "geo"
+      val words = Tokenizer().transform(text)
+      val geo = obj.get("user").get("location").asText ()
       var tweet_type = "normal"
-//      if(value.get("retweeted").asBoolean()) tweet_type ="retweet"
-//      if(value.get("is_quote_status").asBoolean()) tweet_type ="reply"
-//      val retweet_count = value.get("retweet_count").asInt()
-      val retweet_count = 1
+      if(obj.get("retweeted").asBoolean()) tweet_type ="retweet"
+      if(obj.get("is_quote_status").asBoolean()) tweet_type ="reply"
+      val retweet_count = obj.get("retweet_count").asInt()
 //      val usedKey = key.filter(words.contains(_))
       val usedKey = Set("usedKey")
 

@@ -41,19 +41,14 @@ object SentimentAnalysis {
       val stream = env.addSource(new FlinkKafkaConsumer(List("covid").asJava, new SimpleStringSchema, properties))
 
       val tweets = stream.map(Tweet(_).getOrElse(None)).filter(_.isInstanceOf[Tweet])
-//        .map(tweet => tweet.asInstanceOf[Tweet])
-//      val tweets = stream.map(Tweet(_)).filter(_.isSuccess).map(_.get)
+//        .filter(tweet => tweet.has("user") && jsonNode.get("user").has("lang") && jsonNode.get("user").get("lang").asText().equals("en"))
 
-      tweets
-          .map(x => x.toString())
-          .addSink(new FlinkKafkaProducer[String]("topic", new SimpleStringSchema,
-              properties))
 
-//      val scoredTweets = tweets.map(tweet => ClassifierModel("gbm_embeddings_hex").predict(tweet.asInstanceOf[Tweet]))
-//      scoredTweets.print()
-//      scoredTweets
-//        .map(x => x.toString())
-//        .addSink(new FlinkKafkaProducer[String]("topic", new SimpleStringSchema, properties))
+      val scoredTweets = tweets.map(tweet => ClassifierModel("gbm_embeddings_hex").predict(tweet.asInstanceOf[Tweet]))
+      scoredTweets.print()
+      scoredTweets
+        .map(x => x.toString())
+        .addSink(new FlinkKafkaProducer[String]("topic", new SimpleStringSchema, properties))
 
         // execute program
       env.execute("Sentiment Analysis")

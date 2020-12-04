@@ -55,32 +55,39 @@
             <artifactId>h2o-genmodel</artifactId>
             <version>3.32.0.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>net.liftweb</groupId>-->
-<!--            <artifactId>lift-json_2.12</artifactId>-->
-<!--            <version>3.4.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.eclipse.tycho</groupId>-->
-<!--            <artifactId>tycho-compiler-jdt</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.typesafe.play</groupId>-->
-<!--            <artifactId>play-json_2.12</artifactId>-->
-<!--            <version>2.9.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.fasterxml.jackson.module</groupId>-->
-<!--            <artifactId>jackson-module-scala_2.13</artifactId>-->
-<!--            <version>2.12.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-test-utils_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scalactic</groupId>
+            <artifactId>scalactic_${scala.binary.version}</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.binary.version}</artifactId>
+            <version>3.2.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest-flatspec_${scala.binary.version}</artifactId>
+            <version>3.2.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
         <sourceDirectory>flink/src/main/scala</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>flink/src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
-
             <plugin>
                 <!-- Use compiler plugin with tycho as the adapter to the JDT compiler. -->
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -102,7 +109,7 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <goals>
