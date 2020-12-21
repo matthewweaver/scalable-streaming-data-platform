@@ -3,22 +3,20 @@ package sentimentanalysis
 import java.text.SimpleDateFormat
 import java.util.Date
 
-//import net.liftweb.json.DefaultFormats
-//import net.liftweb.json.Serialization.write
+import net.liftweb.json.DefaultFormats
+import net.liftweb.json.Serialization.write
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode
 
 import scala.util.Try
 
 
-case class Tweet(time: Date, text: String, words: Seq[String], hashtags: Set[String],retweet_count: Int=0, geo: String = "unknown", tweet_type: String = "normal", key:Set[String] = Set(), usedKey:Set[String] = Set(), score: String = "undefined")
-// TODO: Should this write be added in
-//{
-//  override def toString: String = {
-//    implicit val formats = DefaultFormats
-//    write(this)
-//  }
-//}
+case class Tweet(time: Date, text: String, words: Seq[String], hashtags: Set[String],retweet_count: Int=0, geo: String = "unknown", place: String = "unknown", tweet_type: String = "normal", key:Set[String] = Set(), usedKey:Set[String] = Set(), score: String = "undefined") {
+  override def toString: String = {
+    implicit val formats = DefaultFormats
+    write(this)
+  }
+}
 
 object Tweet {
   val hashtagPattern = """(\s|\A)#(\w+)""".r
@@ -44,6 +42,10 @@ object Tweet {
       val hashtags: Set[String] = hashtagPattern.findAllIn (text).toSet
       val words = Tokenizer().transform(text)
       val geo = value.get("user").get("location").asText ()
+      var place = "null"
+      if (!value.get("place").isNull) {
+        place = value.get("place").get("bounding_box").get("coordinates").get(0).get(0).toPrettyString()
+      }
       var tweet_type = "normal"
       if(value.get("retweeted").asBoolean()) tweet_type ="retweet"
       if(value.get("is_quote_status").asBoolean()) tweet_type ="reply"
@@ -51,7 +53,7 @@ object Tweet {
 //      val usedKey = key.filter(words.contains(_))
       val usedKey = Set("usedKey")
 
-      Tweet(time, text, words, hashtags,retweet_count, geo, tweet_type, key, usedKey)
+      Tweet(time, text, words, hashtags,retweet_count, geo, place, tweet_type, key, usedKey)
     })
   }
 }

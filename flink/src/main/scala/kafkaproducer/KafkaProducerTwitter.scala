@@ -42,7 +42,7 @@ object KafkaProducerTwitter extends App {
       endpoint.stallWarnings(false)
       endpoint.delimited(false)
       //endpoint.locations(List(chicago).asJava)
-      endpoint.trackTerms(parameter.get("searchTerms", "banana,orange").split(",").toList.asJava)
+      endpoint.trackTerms(parameter.get("searchTerms", "sainsbury").split(",").toList.asJava)
       // TODO: Doesn't seem to work
       endpoint.addPostParameter("lang","en")
       endpoint

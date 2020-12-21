@@ -40,13 +40,17 @@ class TweetSpec extends AnyWordSpec with Matchers {
         val hashtags: Set[String] = hashtagPattern.findAllIn (text).toSet
         val words = Tokenizer().transform(text)
         val geo = value.get("user").get ("location").asText ()
+        var place = "null"
+        if (!value.get("place").isNull) {
+          place = value.get("place").get("bounding_box").get("coordinates").get(0).get(0).toPrettyString()
+        }
         var tweet_type = "normal"
         if(value.has("retweeted_status")) tweet_type ="retweet"
         if(value.has("quoted_status")) tweet_type ="reply"
         val retweet_count = value.get("retweet_count").asInt()
         val usedKey = Set("usedKey")
 
-        val myTweet = Tweet(time, text, words, hashtags,retweet_count, geo, tweet_type, key, usedKey)
+        val myTweet = Tweet(time, text, words, hashtags,retweet_count, geo, place, tweet_type, key, usedKey)
 
 
         assert(expectedTweet.get === myTweet)

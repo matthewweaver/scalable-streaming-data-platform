@@ -1,56 +1,52 @@
 {
   "value": {
-    "created_at": "Fri Nov 20 13:26:52 +0000 2020",
-    "id": 1329778235199123457,
-    "id_str": "1329778235199123457",
-    "text": "I'm sad and down!",
-    "display_text_range": [
-      25,
-      35
-    ],
-    "source": "\u003ca href=\"https:\/\/mobile.twitter.com\" rel=\"nofollow\"\u003eTwitter Web App\u003c\/a\u003e",
+    "created_at": "Mon Dec 21 13:17:03 +0000 2020",
+    "id": 1341009788545724417,
+    "id_str": "1341009788545724417",
+    "text": "LET'S GO!",
+    "source": "\u003ca href=\"http://twitter.com/download/android\" rel=\"nofollow\"\u003eTwitter for Android\u003c/a\u003e",
     "truncated": false,
-    "in_reply_to_status_id": 1329776292674330624,
-    "in_reply_to_status_id_str": "1329776292674330624",
-    "in_reply_to_user_id": 1283359241781288961,
-    "in_reply_to_user_id_str": "1283359241781288961",
-    "in_reply_to_screen_name": "IrinaOleMate1",
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
     "user": {
-      "id": 1004048848568930312,
-      "id_str": "1004048848568930312",
-      "name": "Karine Ghazaryan",
-      "screen_name": "GhazaryanKarine",
-      "location": null,
+      "id": 254187683,
+      "id_str": "254187683",
+      "name": "Trey",
+      "screen_name": "TreyIrby",
+      "location": "Tuscaloosa Town",
       "url": null,
-      "description": "Journalist at http:\/\/Media.am. Semiotics MA at @unitartu. Account is personal.",
+      "description": "I have written no books, shitposter, RIP @Redbox and @Moviepass\n\nHe/him",
       "translator_type": "none",
       "protected": false,
       "verified": false,
-      "followers_count": 538,
-      "friends_count": 161,
-      "listed_count": 11,
-      "favourites_count": 2412,
-      "statuses_count": 1267,
-      "created_at": "Tue Jun 05 17:14:34 +0000 2018",
+      "followers_count": 864,
+      "friends_count": 1815,
+      "listed_count": 29,
+      "favourites_count": 59429,
+      "statuses_count": 102599,
+      "created_at": "Fri Feb 18 19:55:43 +0000 2011",
       "utc_offset": null,
       "time_zone": null,
-      "geo_enabled": false,
+      "geo_enabled": true,
       "lang": null,
       "contributors_enabled": false,
       "is_translator": false,
-      "profile_background_color": "F5F8FA",
-      "profile_background_image_url": "",
-      "profile_background_image_url_https": "",
+      "profile_background_color": "000000",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme9/bg.gif",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme9/bg.gif",
       "profile_background_tile": false,
-      "profile_link_color": "1DA1F2",
-      "profile_sidebar_border_color": "C0DEED",
-      "profile_sidebar_fill_color": "DDEEF6",
-      "profile_text_color": "333333",
-      "profile_use_background_image": true,
-      "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/1284212415974998017\/32uwRkf2_normal.jpg",
-      "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/1284212415974998017\/32uwRkf2_normal.jpg",
-      "profile_banner_url": "https:\/\/pbs.twimg.com\/profile_banners\/1004048848568930312\/1591099389",
-      "default_profile": true,
+      "profile_link_color": "ABB8C2",
+      "profile_sidebar_border_color": "000000",
+      "profile_sidebar_fill_color": "000000",
+      "profile_text_color": "000000",
+      "profile_use_background_image": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1295123452223946752/91vTvGI6_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1295123452223946752/91vTvGI6_normal.jpg",
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/254187683/1601668101",
+      "default_profile": false,
       "default_profile_image": false,
       "following": null,
       "follow_request_sent": null,
@@ -58,9 +54,158 @@
     },
     "geo": null,
     "coordinates": null,
-    "place": null,
+    "place": {
+      "id": "3a22597bb94d08bd",
+      "url": "https://api.twitter.com/1.1/geo/id/3a22597bb94d08bd.json",
+      "place_type": "city",
+      "name": "Tuscaloosa",
+      "full_name": "Tuscaloosa, AL",
+      "country_code": "US",
+      "country": "United States",
+      "bounding_box": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-87.626729, 33.098411],
+            [-87.626729, 33.29479],
+            [-87.440084, 33.29479],
+            [-87.440084, 33.098411]
+          ]
+        ]
+      },
+      "attributes": {}
+    },
     "contributors": null,
-    "is_quote_status": false,
+    "quoted_status_id": 1340440819845754885,
+    "quoted_status_id_str": "1340440819845754885",
+    "quoted_status": {
+      "created_at": "Sat Dec 19 23:36:10 +0000 2020",
+      "id": 1340440819845754885,
+      "id_str": "1340440819845754885",
+      "text": "Brazilian President Bolsonaro claims COVID vaccine could turn people into alligators https://t.co/0hDUJKSE4Z https://t.co/OpcAlRvSb7",
+      "display_text_range": [0, 108],
+      "source": "\u003ca href=\"http://www.socialflow.com\" rel=\"nofollow\"\u003eSocialFlow\u003c/a\u003e",
+      "truncated": false,
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 17469289,
+        "id_str": "17469289",
+        "name": "New York Post",
+        "screen_name": "nypost",
+        "location": "New York, NY",
+        "url": "http://www.nypost.com",
+        "description": "Breaking news & features from The New York Post. Follow your favorite sections: @pagesix, @nypmetro, @nypostbiz, @nypostsports, @nypfashion, @nypostopinion",
+        "translator_type": "none",
+        "protected": false,
+        "verified": true,
+        "followers_count": 2113536,
+        "friends_count": 11385,
+        "listed_count": 19242,
+        "favourites_count": 1981,
+        "statuses_count": 361014,
+        "created_at": "Tue Nov 18 19:46:36 +0000 2008",
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": true,
+        "lang": null,
+        "contributors_enabled": false,
+        "is_translator": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_tile": true,
+        "profile_link_color": "CC3333",
+        "profile_sidebar_border_color": "FFFFFF",
+        "profile_sidebar_fill_color": "DDFFCC",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/966372680306868224/60wfGe9e_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/966372680306868224/60wfGe9e_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/17469289/1444326181",
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": null,
+        "follow_request_sent": null,
+        "notifications": null
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "quote_count": 1905,
+      "reply_count": 947,
+      "retweet_count": 999,
+      "favorite_count": 4371,
+      "entities": {
+        "hashtags": [],
+        "urls": [
+          {
+            "url": "https://t.co/0hDUJKSE4Z",
+            "expanded_url": "https://trib.al/OBIWBRy",
+            "display_url": "trib.al/OBIWBRy",
+            "indices": [85, 108]
+          }
+        ],
+        "user_mentions": [],
+        "symbols": [],
+        "media": [
+          {
+            "id": 1340440817987706881,
+            "id_str": "1340440817987706881",
+            "indices": [109, 132],
+            "media_url": "http://pbs.twimg.com/media/Epoz0m6XYAER9Vl.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/Epoz0m6XYAER9Vl.jpg",
+            "url": "https://t.co/OpcAlRvSb7",
+            "display_url": "pic.twitter.com/OpcAlRvSb7",
+            "expanded_url": "https://twitter.com/nypost/status/1340440819845754885/photo/1",
+            "type": "photo",
+            "sizes": {
+              "thumb": { "w": 150, "h": 150, "resize": "crop" },
+              "large": { "w": 1200, "h": 800, "resize": "fit" },
+              "small": { "w": 680, "h": 453, "resize": "fit" },
+              "medium": { "w": 1200, "h": 800, "resize": "fit" }
+            }
+          }
+        ]
+      },
+      "extended_entities": {
+        "media": [
+          {
+            "id": 1340440817987706881,
+            "id_str": "1340440817987706881",
+            "indices": [109, 132],
+            "media_url": "http://pbs.twimg.com/media/Epoz0m6XYAER9Vl.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/Epoz0m6XYAER9Vl.jpg",
+            "url": "https://t.co/OpcAlRvSb7",
+            "display_url": "pic.twitter.com/OpcAlRvSb7",
+            "expanded_url": "https://twitter.com/nypost/status/1340440819845754885/photo/1",
+            "type": "photo",
+            "sizes": {
+              "thumb": { "w": 150, "h": 150, "resize": "crop" },
+              "large": { "w": 1200, "h": 800, "resize": "fit" },
+              "small": { "w": 680, "h": 453, "resize": "fit" },
+              "medium": { "w": 1200, "h": 800, "resize": "fit" }
+            }
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "filter_level": "low",
+      "lang": "en"
+    },
+    "quoted_status_permalink": {
+      "url": "https://t.co/Mn3jLTP5XY",
+      "expanded": "https://twitter.com/nypost/status/1340440819845754885",
+      "display": "twitter.com/nypost/status/\u2026"
+    },
+    "is_quote_status": true,
     "quote_count": 0,
     "reply_count": 0,
     "retweet_count": 0,
@@ -68,34 +213,13 @@
     "entities": {
       "hashtags": [],
       "urls": [],
-      "user_mentions": [
-        {
-          "screen_name": "IrinaOleMate1",
-          "name": "IrinaOleMatevosyan\ud83d\udcda",
-          "id": 1283359241781288961,
-          "id_str": "1283359241781288961",
-          "indices": [
-            0,
-            14
-          ]
-        },
-        {
-          "screen_name": "mrtrsyns",
-          "name": "sam martirosyan",
-          "id": 253673219,
-          "id_str": "253673219",
-          "indices": [
-            15,
-            24
-          ]
-        }
-      ],
+      "user_mentions": [],
       "symbols": []
     },
     "favorited": false,
     "retweeted": false,
     "filter_level": "low",
     "lang": "en",
-    "timestamp_ms": "1605878812013"
+    "timestamp_ms": "1608556623003"
   }
 }
