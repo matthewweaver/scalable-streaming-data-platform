@@ -21,11 +21,6 @@ A Data Engineering project to practice using streaming technologies and scaling 
     * Track lockdown through traffic, how weather effects adherence to lockdown
     * Track air quality due to lockdown (more historical)
 
-### MVP:
-1. ~~Get Kafka running locally with a service to stream tweets into a topic~~
-2. Get Flink running locally with a transformation to calculate sentiment in real time
-3. Deploy containers to cloud for scale
-
 ### How to run locally on Mac:
 1. With Docker Toolbox installed, create a docker machine locally by running <br>`./create-docker-machine.sh`
 

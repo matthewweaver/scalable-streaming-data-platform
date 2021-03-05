@@ -40,9 +40,9 @@ class TweetSpec extends AnyWordSpec with Matchers {
         val hashtags: Set[String] = hashtagPattern.findAllIn (text).toSet
         val words = Tokenizer().transform(text)
         val geo = value.get("user").get ("location").asText ()
-        var place = "null"
+        var place = List[Float]()
         if (!value.get("place").isNull) {
-          place = value.get("place").get("bounding_box").get("coordinates").get(0).get(0).toPrettyString()
+          place = value.get("place").get("bounding_box").get("coordinates").get(0).get(0).toPrettyString().filterNot(c => c  == '[' || c == ']').split(",").map(_.toFloat).toList
         }
         var tweet_type = "normal"
         if(value.has("retweeted_status")) tweet_type ="retweet"

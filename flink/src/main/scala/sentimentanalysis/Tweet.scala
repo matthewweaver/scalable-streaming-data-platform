@@ -11,7 +11,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.Obje
 import scala.util.Try
 
 
-case class Tweet(time: Date, text: String, words: Seq[String], hashtags: Set[String],retweet_count: Int=0, geo: String = "unknown", place: String = "unknown", tweet_type: String = "normal", key:Set[String] = Set(), usedKey:Set[String] = Set(), score: String = "undefined") {
+case class Tweet(time: Date, text: String, words: Seq[String], hashtags: Set[String],retweet_count: Int=0, geo: String = "unknown", place: List[Float] = null, tweet_type: String = "normal", key:Set[String] = Set(), usedKey:Set[String] = Set(), score: String = "undefined") {
   override def toString: String = {
     implicit val formats = DefaultFormats
     write(this)
@@ -41,10 +41,12 @@ object Tweet {
 //      val time = dateFormat.parse ("Thu Nov 26 16:05:10 +0000 2020")
       val hashtags: Set[String] = hashtagPattern.findAllIn (text).toSet
       val words = Tokenizer().transform(text)
+      // A location set on users profile, may not reflect their actual location
       val geo = value.get("user").get("location").asText ()
-      var place = "null"
+      var place = List[Float]()
       if (!value.get("place").isNull) {
-        place = value.get("place").get("bounding_box").get("coordinates").get(0).get(0).toPrettyString()
+        // If user on a gps enabled device, tweet can populate place with bounding box of coordinates [long, lat]
+        place = value.get("place").get("bounding_box").get("coordinates").get(0).get(0).toPrettyString().filterNot(c => c  == '[' || c == ']').split(",").map(_.toFloat).toList
       }
       var tweet_type = "normal"
       if(value.get("retweeted").asBoolean()) tweet_type ="retweet"

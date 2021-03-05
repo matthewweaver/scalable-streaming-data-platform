@@ -1,1 +1,2 @@
+cd ..
 mvn clean package
