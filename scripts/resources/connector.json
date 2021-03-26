@@ -1,0 +1,16 @@
+{
+  "name": "flink-kafka-to-elk",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "topics": "sentiment",
+    "topic.index.map": "sentiment:sentiment-index",
+    "key.ignore": "true",
+    "schema.ignore": "true",
+    "connection.url": "http://elasticsearch:9200",
+    "connection.username": "elastic",
+    "connection.password": "6lONx3NeqYlCBoy8d6Ym",
+    "type.name": "test-type",
+    "name": "flink-kafka-to-elk"
+  }
+}

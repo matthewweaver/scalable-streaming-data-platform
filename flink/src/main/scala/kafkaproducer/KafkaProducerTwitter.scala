@@ -16,7 +16,7 @@ object KafkaProducerTwitter extends App {
   val parameter = ParameterTool.fromArgs(args)
 
   // Getting twitter credentials
-  val params = ParameterTool.fromPropertiesFile("../twitter.properties")
+  val params = ParameterTool.fromPropertiesFile("../credentials/twitter.properties")
 
   val properties = new Properties()
   properties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")

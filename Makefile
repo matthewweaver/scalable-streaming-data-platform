@@ -9,19 +9,12 @@ build:
 	cd scripts && ./build-images.sh
 	cd scripts && ./build-jars.sh
 
-start: check-var-searchTerm
+start:
 	cd scripts && ./start-docker-machine.sh
-	# TODO: Only run curl once docker ps shows as started
-	sleep 10
+	cd scripts && ./wait-until-container-up.sh
 	cd scripts && ./curl-kafka-connect.sh
 	cd scripts && ./run-sentiment-analysis.sh
-	cd scripts && ./run-twitter-producer.sh $searchTerm
+	cd scripts && ./flask-entrypoint.sh
 
 stop:
 	cd scripts && ./stop-docker-machine.sh
-
-# TODO: Test this
-run: check-var-searchTerm create start
-
-check-var-%:
-	@ if [ "${${*}}" = "" ]; then echo "Environment variable $* not set"; exit 1; fi

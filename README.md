@@ -21,6 +21,9 @@ A Data Engineering project to practice using streaming technologies and scaling 
     * Track lockdown through traffic, how weather effects adherence to lockdown
     * Track air quality due to lockdown (more historical)
 
+### Setup
+1. Create elasticsearch users and passwords using `docker-compose exec elasticsearch bash` followed by `bin/elasticsearch-setup-passwords auto`
+
 ### How to run locally on Mac:
 1. With Docker Toolbox installed, create a docker machine locally by running <br>`./create-docker-machine.sh`
 

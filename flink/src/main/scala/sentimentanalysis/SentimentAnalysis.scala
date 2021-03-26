@@ -21,6 +21,7 @@ object SentimentAnalysis {
       val properties = new Properties()
       properties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")
       properties.setProperty("group.id", "flink")
+      properties.setProperty("")
       val env = StreamExecutionEnvironment.getExecutionEnvironment()
 
       val stream = env.addSource(new FlinkKafkaConsumer("tweets", new JSONKeyValueDeserializationSchema(true), properties))
