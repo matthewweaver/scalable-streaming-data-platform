@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\Matthew\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elasticsearch
+  name: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: elasticsearch
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\Matthew\kompose.exe convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: elasticsearch
+    spec:
+      containers:
+      - env:
+        - name: ES_JAVA_OPTS
+          value: -Xms512m -Xmx512m
+        - name: bootstrap.memory_lock
+          value: "true"
+        - name: cluster.name
+          value: docker-cluster
+        - name: discovery.type
+          value: single-node
+        - name: network.host
+          value: 0.0.0.0
+        - name: node.name
+          value: es01
+        - name: xpack.security.enabled
+          value: "true"
+        - name: xpack.security.transport.ssl.enabled
+          value: "true"
+        - name: xpack.security.transport.ssl.keystore.path
+          value: elastic-certificates.p12
+        - name: xpack.security.transport.ssl.keystore.type
+          value: PKCS12
+        - name: xpack.security.transport.ssl.truststore.path
+          value: elastic-certificates.p12
+        - name: xpack.security.transport.ssl.truststore.type
+          value: PKCS12
+        - name: xpack.security.transport.ssl.verification_mode
+          value: certificate
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+        imagePullPolicy: ""
+        name: elasticsearch
+        ports:
+        - containerPort: 9200
+        resources:
+          limits:
+            memory: "3221225472"
+        securityContext:
+          capabilities:
+            add:
+            - ALL
+          privileged: true
+        volumeMounts:
+        - name: elasticsearch-certs
+          mountPath: /usr/share/elasticsearch/config/elastic-certificates.p12
+        - name: elasticsearch-claim1
+          mountPath: /usr/share/elasticsearch/data
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: elasticsearch-certs
+        hostPath:
+          path: /usr/share/elasticsearch/elastic-certificates.p12
+          type: File
+      - name: elasticsearch-claim1
+        persistentVolumeClaim:
+          claimName: elasticsearch-claim1
+status: {}

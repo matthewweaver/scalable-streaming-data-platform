@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 1
+  template:
+    metadata:
+      name: flask-tmpl
+      labels:
+        app: flask
+    spec:
+      containers:
+        - name: flask
+          image: 200113850149.dkr.ecr.eu-west-1.amazonaws.com/twitter-streaming:flask
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000

@@ -136,4 +136,4 @@ services:
       - "9200:9200"
     volumes:
       - ./credentials/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
-      - ./docker-data-volumes/elasticsearch:/usr/share/elasticsearch/data
+      - ./docker-data-volumes/elasticsearch``:/usr/share/elasticsearch/data

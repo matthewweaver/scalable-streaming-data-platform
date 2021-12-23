@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\Matthew\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jobmanager
+  name: jobmanager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jobmanager
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\Matthew\kompose.exe convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: jobmanager
+    spec:
+      containers:
+      - args:
+        - jobmanager
+        env:
+        - name: JOB_MANAGER_RPC_ADDRESS
+          value: jobmanager
+        image: flink:1.11.2-scala_2.12
+        imagePullPolicy: ""
+        name: flink-jobmanager
+        ports:
+        - containerPort: 8081
+          name: ui
+        - containerPort: 6123
+          name: rpc
+        - containerPort: 6124
+          name: blob-server
+        resources: {}
+        volumeMounts:
+        - name: twitter-credentials
+          mountPath: "/opt/flink/credentials/"
+          readOnly: true
+      hostname: flink-jobmanager
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: twitter-credentials
+        secret:
+          secretName: twitter-credentials
+status: {}

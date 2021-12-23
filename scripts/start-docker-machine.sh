@@ -17,6 +17,3 @@ docker-machine ssh development "sudo sysctl -w vm.max_map_count=262144"
 
 # Spin up Kafka, Zookeeper, Flink running in docker machine
 docker-compose up -d
-
-# TODO: Open Kibana and Flink in browser
-# TODO: Speed up start of Kafka Connect

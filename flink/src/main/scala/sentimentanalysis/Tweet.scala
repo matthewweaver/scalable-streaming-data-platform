@@ -11,7 +11,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.Obje
 import scala.util.Try
 
 
-case class Tweet(time: Date, text: String, words: Seq[String], hashtags: Set[String],retweet_count: Int=0, geo: String = "unknown", place: List[Float] = null, tweet_type: String = "normal", key:Set[String] = Set(), usedKey:Set[String] = Set(), score: String = "undefined") {
+case class Tweet(key: String, time: Date, text: String, words: Seq[String], hashtags: Set[String],retweet_count: Int=0, geo: String = "unknown", place: List[Float] = null, tweet_type: String = "normal", usedKey:Set[String] = Set(), score: String = "undefined") {
   override def toString: String = {
     implicit val formats = DefaultFormats
     write(this)
@@ -25,9 +25,7 @@ object Tweet {
 
   def apply(obj: ObjectNode): Try[Tweet] ={
     Try({
-      // TODO: Add search term to key
-//      val key = obj.get("key").asText().split(" ").toSet
-      val key = Set("key")
+      val key = obj.get("key").asText ()
       val value = obj.get("value")
       var text = ""
 //      var text = obj.get("text").asText ()
@@ -55,7 +53,7 @@ object Tweet {
 //      val usedKey = key.filter(words.contains(_))
       val usedKey = Set("usedKey")
 
-      Tweet(time, text, words, hashtags,retweet_count, geo, place, tweet_type, key, usedKey)
+      Tweet(key, time, text, words, hashtags,retweet_count, geo, place, tweet_type, usedKey)
     })
   }
 }

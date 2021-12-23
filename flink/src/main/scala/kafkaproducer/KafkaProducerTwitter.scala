@@ -16,10 +16,10 @@ object KafkaProducerTwitter extends App {
   val parameter = ParameterTool.fromArgs(args)
 
   // Getting twitter credentials
-  val params = ParameterTool.fromPropertiesFile("../credentials/twitter.properties")
+  val params = ParameterTool.fromPropertiesFile("credentials/twitter.properties")
 
   val properties = new Properties()
-  properties.setProperty("bootstrap.servers", s"${sys.env("DOCKER_MACHINE_IP")}:9092")
+  properties.setProperty("bootstrap.servers", "kafka:9092")
   properties.setProperty("group.id", "flink-producer")
   properties.setProperty("client.id", "flink-producer-twitter")
 
@@ -42,7 +42,7 @@ object KafkaProducerTwitter extends App {
       endpoint.stallWarnings(false)
       endpoint.delimited(false)
       //endpoint.locations(List(chicago).asJava)
-      endpoint.trackTerms(parameter.get("searchTerms", "sainsbury").split(",").toList.asJava)
+      endpoint.trackTerms(parameter.get("searchTerms").split(",").toList.asJava)
       // TODO: Doesn't seem to work
       endpoint.addPostParameter("lang","en")
       endpoint
@@ -57,8 +57,8 @@ object KafkaProducerTwitter extends App {
   // get input data
   val streamSource: DataStream[String] = env.addSource(source)
 
-  streamSource.addSink(new FlinkKafkaProducer[String]("tweets", new SimpleStringSchema, properties))
+  streamSource.addSink(new FlinkKafkaProducer[String](parameter.get("searchTerms"), new SimpleStringSchema, properties))
 
   // execute program
-  env.execute("Twitter Producer")
+  env.execute(s"Twitter Producer: ${parameter.get("searchTerms")}")
 }

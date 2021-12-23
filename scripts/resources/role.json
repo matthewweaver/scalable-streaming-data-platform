@@ -1,0 +1,16 @@
+{
+  "cluster": ["all"],
+  "indices": [
+    {
+      "names": [ "sentiment" ],
+      "privileges": ["all"]
+    }
+  ],
+  "applications": [
+    {
+      "application": "kibana",
+      "privileges": [ "admin", "read" ],
+      "resources": [ "*" ]
+    }
+  ]
+}

@@ -2,9 +2,10 @@
 .idea
 .DS_Store
 .venv
+venv
 *.iml
 .compiler
-target
+target/*
 
 # Credentials
 credentials/*
