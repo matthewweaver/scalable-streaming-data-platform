@@ -75,8 +75,8 @@ spec:
         - name: elasticsearch-certs
           image: woahbase/alpine-awscli
           command: [ "/bin/sh", "-c" ]
-          args: [ "aws configure set aws_access_key_id AKIAS5F5XA4SYK27JTX3 &&
-                   aws configure set aws_secret_access_key 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 &&
+          args: [ "aws configure set aws_access_key_id <access_key> &&
+                   aws configure set aws_secret_access_key <secret_access_key> &&
                    aws configure set default.region eu-west-1 &&
                    aws s3 cp s3://scalable-streaming-data-platform-eks/elastic-certificates.p12 /usr/share/elasticsearch/config" ]
           volumeMounts:
