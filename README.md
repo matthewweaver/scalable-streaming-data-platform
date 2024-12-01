@@ -2,6 +2,9 @@
 
 A Data Engineering platform using streaming technologies to run both locally and easily scale up to cloud.
 
+## Demo
+[![](https://i9.ytimg.com/vi/2HtlIFA15yo/mq2.jpg?sqp=CLTerroG-oaymwEmCMACELQB8quKqQMa8AEB-AHUBoACzAOKAgwIABABGE8gWihlMA8=&rs=AOn4CLA5_fZEmx6uKig8kClCeUp50KR7CA)](https://youtu.be/2HtlIFA15yo)
+
 ## Intro
 #### Aims
 * Use readily available real-time data streams
